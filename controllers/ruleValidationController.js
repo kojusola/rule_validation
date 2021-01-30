@@ -95,7 +95,11 @@ exports.ruleValidation = exports.details = async (req, res) =>{
     }
 
 } catch(error){
-    
+    return res.status(500).json({
+        "message":"internal server error.",
+        "status":"error",
+        "data": null
+    })
 }
 };
         

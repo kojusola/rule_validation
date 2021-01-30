@@ -22,7 +22,9 @@ switch (ruleCondition){
         }
         break
     case "contains":
-        if (dataField.includes(ruleConditionValue)){
+        if ((typeof(dataField) !== 'number' )&&(dataField.includes(ruleConditionValue))){
+            return true
+        } else  if ((typeof(dataField) === 'number' )&&((dataField+'').indexOf(ruleConditionValue)> -1)){
             return true
         }
         break
@@ -75,7 +77,7 @@ exports.ruleValidation = (rule) =>{
         return { 
             "bool":"false"
         }
-    } else if (!rule.field){
+    } else if ((!rule.field)){
         return {
             "missing":"field", 
             "bool":"true"
